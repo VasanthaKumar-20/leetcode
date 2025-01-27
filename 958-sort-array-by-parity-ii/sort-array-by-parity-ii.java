@@ -1,8 +1,7 @@
 import java.util.*;
 class Solution {
     public int[] sortArrayByParityII(int[] nums) {
-        int len = nums.length;
-        int c=0;
+        int len = nums.length,c=0;
         ArrayList<Integer> odd = new ArrayList<>();
         ArrayList<Integer> even = new ArrayList<>();
         Arrays.sort(nums);
