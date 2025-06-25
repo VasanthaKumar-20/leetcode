@@ -4,8 +4,8 @@ class Solution {
         int ans=0;
         for(int i=0;i<n;i++)
         {
-            int count=1;
-            while(nums[i]>9)
+            int count=0;
+            while(nums[i]>0)
             {
                 nums[i]=nums[i]/10;
                 count++;
