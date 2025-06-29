@@ -10,26 +10,28 @@
  */
 class Solution {
     public int getDecimalValue(ListNode head) {
-        ListNode rev = null;
-        ListNode temp=head;
-        while(temp!=null)
+        if(head.next==null)
         {
-            ListNode newNode = new ListNode(temp.val);
-            newNode.next=rev;
-            rev=newNode;
-            temp=temp.next;
+            return (head.val==1)?1:0;
         }
-        ListNode cur = rev;
-        int i=1;
-        int ans=0;
+        ListNode prev=null;
+        ListNode cur=head;
         while(cur!=null)
         {
-            if(cur.val==1)
+            ListNode next=cur.next;
+            cur.next=prev;
+            prev=cur;
+            cur=next;
+        }
+        int ans=0,b=1;
+        while(prev!=null)
+        {
+            if(prev.val==1)
             {
-                ans+=i;
+                ans+=b;
             }
-            i=i*2;
-            cur=cur.next;
+            b*=2;
+            prev=prev.next;
         }
         return ans;
     }
