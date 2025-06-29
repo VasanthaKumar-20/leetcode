@@ -15,7 +15,7 @@ class Solution {
         while(temp!=null)
         {
             ListNode newNode = new ListNode(temp.val);
-            newNode.next=rev;
+             newNode.next=rev;
             rev=newNode;
             temp=temp.next;
         }
@@ -25,7 +25,7 @@ class Solution {
         {
             if(temp.val!=cur.val)
             {
-                return false;
+                return false; 
             }
             temp=temp.next;
             cur=cur.next;
