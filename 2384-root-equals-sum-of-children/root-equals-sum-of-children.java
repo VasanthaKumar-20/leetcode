@@ -17,7 +17,6 @@ class Solution {
     private int sum=0;
     public boolean checkTree(TreeNode root) {
         func(root);
-        System.out.println(sum);
         return (root.val==sum-root.val);
     }
     public void func(TreeNode node)
