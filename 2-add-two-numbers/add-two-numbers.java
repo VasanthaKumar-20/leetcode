@@ -10,56 +10,51 @@
  */
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode cur1 = l1;
-        ListNode cur2 = l2;
-        int c1,c2;
-        ListNode ans=null;
-        int carry=0;
-        while(cur1!=null || cur2!=null)
+        int a = l1.val+l2.val;
+        int z = a%10;
+        ListNode ans = new ListNode(z);
+        int c = a/10;
+        ListNode temp1 = l1.next;
+        ListNode temp2 = l2.next;
+        ListNode curr = ans;
+        while(temp1!=null || temp2!=null)
         {
-            if(cur1==null)
+            int d;
+            if(temp1!=null && temp2!=null)
             {
-                c1=0;
+                int b = temp1.val+temp2.val+c;
+                d = b%10;
+                c=b/10;
+            }
+            else if(temp1!=null && temp2==null)
+            {
+                int b = temp1.val+c;
+                d = b%10;
+                c=b/10;
             }
             else
             {
-                c1=cur1.val;
-                cur1=cur1.next;
+                int b = temp2.val+c;
+                d = b%10;
+                c=b/10;
             }
-            if(cur2==null)
+            if(temp1!=null)
             {
-                c2=0;
+                temp1=temp1.next;
             }
-            else
+            if(temp2!=null)
             {
-                c2=cur2.val;
-                cur2=cur2.next;
+                temp2=temp2.next;
             }
-            int d = c1+c2+carry;
-            ListNode newnode = new ListNode(d%10);
-            carry=d/10;
-            newnode.next=ans;
-            ans=newnode;
+            ListNode newnode = new ListNode(d);
+            curr.next=newnode;
+            curr=curr.next;
         }
-        if(carry>0)
+        if(c>0)
         {
-            ListNode newnode = new ListNode(carry);
-            newnode.next=ans;
-            ans=newnode;
+            ListNode newnode = new ListNode(c);
+            curr.next=newnode;
         }
-        return reverse(ans);
-    }
-
-    public static ListNode reverse(ListNode head)
-    {
-        ListNode prev = null;
-        while(head!=null)
-        {
-            ListNode next = head.next;
-            head.next=prev;
-            prev=head;
-            head=next;
-        }
-        return prev;
+        return ans;
     }
 }
