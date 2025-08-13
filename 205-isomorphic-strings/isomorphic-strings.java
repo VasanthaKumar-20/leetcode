@@ -1,31 +1,24 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        if(s.length()!=t.length())
+        if(s.length()!=t.length()) return false;
+        HashMap<Character,Character> hm = new HashMap<>();
+        int n=s.length();
+        for(int i=0;i<n;i++)
         {
-            return false;
+            char ch1 = s.charAt(i);
+            char ch2 = t.charAt(i);
+            if(hm.containsKey(ch1))
+            {
+                if(hm.get(ch1)!=ch2)
+                return false;
+            }
+            else if(hm.containsValue(ch2))
+            {
+                return false;
+            }
+            hm.put(ch1,ch2);
+            
         }
-        HashMap<Character,Character> map1 = new HashMap<>();
-        HashMap<Character,Character> map2 = new HashMap<>();
-        for(int i=0;i<s.length();i++)
-        {
-            map1.put(s.charAt(i),t.charAt(i));
-            map2.put(t.charAt(i),s.charAt(i));
-        }
-        StringBuilder build1 = new StringBuilder();
-        StringBuilder build2 = new StringBuilder();
-        for(int i=0;i<s.length();i++)
-        {
-            char ch1 = map1.get(s.charAt(i));
-            build1.append(ch1);
-            char ch2 = map2.get(t.charAt(i));
-            build2.append(ch2);
-        }
-        System.out.println(build1);
-        System.out.println(build2);
-        if(t.equals(build1.toString()) && s.equals(build2.toString()))
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
 }
